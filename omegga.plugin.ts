@@ -18,7 +18,7 @@ type Storage = {
 };
 
 // update checker constants
-const PLUGIN_VERSION = '0.0.1';
+const PLUGIN_VERSION = '0.0.2';
 const GITHUB_URL = 'https://github.com/Dogelix/omegga-serverannouncements';
 
 export default class Plugin implements OmeggaPlugin<Config, Storage> {
@@ -47,17 +47,13 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
 
     this.store.set("dogelixServerAnnouncements", announcements);
 
-    await announcements?.map(async (announcement) => {
-      const newTimeout = await this.setUpAnnouncement(announcement)
-      console.log(JSON.stringify(newTimeout));
-      //this.announcementTimeouts.push();
+    announcements?.map((announcement) => {
+      this.setUpAnnouncement(announcement)
     })
   }
 
-  async setUpAnnouncement(announcement: AnnouncementSchedule): Promise<NodeJS.Timeout> {
+  setUpAnnouncement(announcement: AnnouncementSchedule): NodeJS.Timeout {
     const intervalMs = announcement.period === "mins" ? announcement.time * 60_000 : announcement.time * 60 * 60_000;
-    console.log("intervalMs for message " + announcement.message, intervalMs);
-
     return setTimeout(() => {
       setInterval(() => {
         const message = `[Announcement] ${announcement.message}`;
