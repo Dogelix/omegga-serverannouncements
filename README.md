@@ -20,7 +20,7 @@ omegga update serverannouncements
 All config options configurable in omeggas web UI.
 
 ### Announcement Structure
-```json
+```
 {
     "time": number                  // How often you want the annoucement to run.
     "period": "mins" | "hours"      // Whether the time you set is in minutes or hours.
