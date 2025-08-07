@@ -7,7 +7,7 @@ A simple [omegga](https://github.com/brickadia-community/omegga) plugin that pos
 
 ```bash
 # install
-omegga install gh:dogelix/serverannouncements
+omegga install gh:Dogelix/serverannouncements
 
 # update
 omegga update serverannouncements
