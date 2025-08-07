@@ -1,0 +1,14 @@
+{
+  "name": "serverannouncements",
+  "description": "A simple plugin that posts announcements in the server at times set by you.",
+  "author": "dogelix",
+  "config": {
+    "announcements": {
+      "type": "string",
+      "itemType": "announcements",
+      "description": "Announcements schedule.",
+      "default": "[]"
+    }
+  },
+  "commands": []
+}
