@@ -55,6 +55,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
 
   async setUpAnnouncement(announcement: AnnouncementSchedule): Promise<NodeJS.Timeout> {
     const intervalMs = announcement.period === "mins" ? announcement.time * 60_000 : announcement.time * 60 * 60_000;
+    console.log("intervalMs for message " + announcement.message, intervalMs);
 
     return setInterval(() => {
       const message = `[Announcement] ${announcement.message}`;
