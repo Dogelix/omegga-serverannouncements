@@ -12,6 +12,7 @@ interface AnnouncementSchedule {
   time: number;
   period: "mins" | "hours";
   message: string;
+  offset?: number;
 }
 
 type Storage = {
@@ -59,11 +60,13 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
     const intervalMs = announcement.period === "mins" ? announcement.time * 60_000 : announcement.time * 60 * 60_000;
     console.log("intervalMs for message " + announcement.message, intervalMs);
 
-    return setInterval(() => {
-      const message = `[Announcement] ${announcement.message}`;
-      console.log(message);
-      this.omegga.broadcast(message);
-    }, intervalMs);
+    return setTimeout(() => {
+      setInterval(() => {
+        const message = `[Announcement] ${announcement.message}`;
+        console.log(message);
+        this.omegga.broadcast(message);
+      }, intervalMs);
+    }, announcement.offset ? announcement.offset * 60_000 : 0);
   }
 
 
