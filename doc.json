@@ -7,7 +7,7 @@
       "type": "string",
       "itemType": "announcements",
       "description": "Announcements schedule. The offset is in minutes.",
-      "default": "[{\"time\": 5, \"period\": \"mins\", \"message\":\"Test\", \"offset\": 1}]",
+      "default": "[{\"time\": 5, \"period\": \"mins\", \"message\":\"Test\", \"offset\": 1}]"
     }
   },
   "commands": []
