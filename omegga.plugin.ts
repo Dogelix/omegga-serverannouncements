@@ -48,7 +48,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
 
     this.store.set("dogelixServerAnnouncements", announcements);
 
-    announcements.map(async (announcement) => {
+    announcements?.map(async (announcement) => {
       this.announcementTimeouts.push(await this.setUpAnnouncement(announcement));
     })
   }

@@ -7,7 +7,7 @@
       "type": "string",
       "itemType": "announcements",
       "description": "Announcements schedule.",
-      "default": "[]"
+      "default": "[{\"time\": 5, \"period\": \"mins\", \"message\":\"Test\"}]"
     }
   },
   "commands": []
