@@ -1,14 +1,14 @@
 {
-  "name": "omegga-rolelogger",
-  "version": "0.4.1",
-  "description": "A simple plugin that logs role events.",
+  "name": "omegga-serverannouncements",
+  "version": "0.0.1",
+  "description": "A simple plugin that posts announcements in the server at times set by you..",
   "main": "omegga.plugin.ts",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joksulainen/omegga-rolelogger.git"
+    "url": "git+https://github.com/Dogelix/omegga-serverannouncements.git"
   },
-  "author": "joksulainen",
+  "author": "Dogelix",
   "license": "MIT",
   "dependencies": {
     "node-fetch": "^2.6.7"
