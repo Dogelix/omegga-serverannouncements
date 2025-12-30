@@ -8,6 +8,17 @@
       "itemType": "announcements",
       "description": "Announcements schedule. The offset is in minutes.",
       "default": "[{\"time\": 5, \"period\": \"mins\", \"message\":\"Test\", \"offset\": 1}]"
+    },
+    "serverColor": {
+      "type": "enum",
+      "options":["white", "black", "yellow","orange","blue","custom"],
+      "description": "The color of the the '[Announcement]' prefix.",
+      "default": "white"
+    },
+    "customColor": {
+      "type": "string",
+      "description": "Custom color to use if custom is selected by serverColor",
+      "default": "#000000"
     }
   },
   "commands": []

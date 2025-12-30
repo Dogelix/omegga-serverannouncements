@@ -3,7 +3,9 @@ import { OmeggaPlugin, OL, PS, PC } from 'omegga';
 
 // plugin config and storage
 type Config = {
-  announcements: string
+  announcements: string;
+  serverColor: string;
+  customColor: string;
 };
 
 interface AnnouncementSchedule {
@@ -15,11 +17,21 @@ interface AnnouncementSchedule {
 
 type Storage = {
   dogelixServerAnnouncements: AnnouncementSchedule[] | undefined;
+  serverColor: string
 };
 
 // update checker constants
 const PLUGIN_VERSION = '0.0.2';
 const GITHUB_URL = 'https://github.com/Dogelix/omegga-serverannouncements';
+
+/*
+"#000000" black,
+"#ffffff" white,
+"#ffe600" yellow, 
+"#ff8800ff" orange, 
+"#1100ffff" blue,
+custom
+*/
 
 export default class Plugin implements OmeggaPlugin<Config, Storage> {
   omegga: OL;
@@ -41,6 +53,33 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
       await this.store.wipe();
     }
 
+    switch(this.config.serverColor){
+       case "black": {
+        this.store.set("serverColor", "#000000");
+        break;
+      }
+      case "white": {
+        this.store.set("serverColor", "#ffffff");
+        break;
+      }
+      case "yellow": {
+        this.store.set("serverColor", "#ffe600");
+        break;
+      }
+      case "orange": {
+        this.store.set("serverColor", "#ff8800ff");
+        break;
+      }
+      case "blue": {
+        this.store.set("serverColor", "#1100ffff");
+        break;
+      }
+      case "custom": {
+        this.store.set("serverColor", this.config.customColor);
+        break;
+      }
+    }
+
     const configAnnouncements = this.config.announcements;
     const configAnnouncementsJson: AnnouncementSchedule[] = JSON.parse(configAnnouncements);
     announcements = configAnnouncementsJson;
@@ -56,7 +95,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
     const intervalMs = announcement.period === "mins" ? announcement.time * 60_000 : announcement.time * 60 * 60_000;
     return setTimeout(() => {
       setInterval(() => {
-        const message = `[Announcement] ${announcement.message}`;
+        const message = `[<b><color="${this.store.get("serverColor")}">Announcement</></>] ${announcement.message}`;
         console.log(message);
         this.omegga.broadcast(message);
       }, intervalMs);
