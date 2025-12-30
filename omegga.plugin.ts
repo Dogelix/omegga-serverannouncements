@@ -44,6 +44,8 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
     this.omegga = omegga;
     this.config = config;
     this.store = store;
+
+    this.store.set("serverColor", "#ffffff");
   }
 
   async init() {
