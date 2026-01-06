@@ -47,6 +47,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
   }
 
   async init() {
+    console.log("init started");
     let announcements = await this.store.get('dogelixServerAnnouncements');
 
     if (announcements !== undefined) {
@@ -80,8 +81,12 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
       }
     }
 
+    
+    console.log("announcements colour: " + this.store.get("serverColor"));
+
     const configAnnouncements = this.config.announcements;
     const configAnnouncementsJson: AnnouncementSchedule[] = JSON.parse(configAnnouncements);
+    console.log("configAnnouncementsJson",configAnnouncementsJson);
     announcements = configAnnouncementsJson;
 
     this.store.set("dogelixServerAnnouncements", announcements);
