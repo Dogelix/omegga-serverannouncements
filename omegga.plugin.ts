@@ -82,7 +82,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
     }
 
     
-    console.log("announcements colour: " + this.store.get("serverColor"));
+    console.log("announcements colour: " + await this.store.get("serverColor"));
 
     const configAnnouncements = this.config.announcements;
     const configAnnouncementsJson: AnnouncementSchedule[] = JSON.parse(configAnnouncements);
@@ -99,8 +99,8 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
   setUpAnnouncement(announcement: AnnouncementSchedule): NodeJS.Timeout {
     const intervalMs = announcement.period === "mins" ? announcement.time * 60_000 : announcement.time * 60 * 60_000;
     return setTimeout(() => {
-      setInterval(() => {
-        const message = `[<b><color="${this.store.get("serverColor")}">Announcement</></>] ${announcement.message}`;
+      setInterval(async () => {
+        const message = `[<b><color="${await this.store.get("serverColor")}">Announcement</></>] ${announcement.message}`;
         console.log(message);
         this.omegga.broadcast(message);
       }, intervalMs);
