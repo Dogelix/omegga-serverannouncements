@@ -1,4 +1,5 @@
 import { OmeggaPlugin, OL, PS, PC } from 'omegga';
+import fetch from 'node-fetch';
 
 
 // plugin config and storage
@@ -19,10 +20,6 @@ type Storage = {
   dogelixServerAnnouncements: AnnouncementSchedule[] | undefined;
   serverColor: string
 };
-
-// update checker constants
-const PLUGIN_VERSION = '0.0.2';
-const GITHUB_URL = 'https://github.com/Dogelix/omegga-serverannouncements';
 
 /*
 "#000000" black,
@@ -54,8 +51,8 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
       await this.store.wipe();
     }
 
-    switch(this.config.serverColor){
-       case "black": {
+    switch (this.config.serverColor) {
+      case "black": {
         this.store.set("serverColor", "#000000");
         break;
       }
@@ -81,12 +78,16 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
       }
     }
 
-    
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+
+
     console.log("announcements colour: " + await this.store.get("serverColor"));
 
     const configAnnouncements = this.config.announcements;
     const configAnnouncementsJson: AnnouncementSchedule[] = JSON.parse(configAnnouncements);
-    console.log("configAnnouncementsJson",configAnnouncementsJson);
+    console.log("configAnnouncementsJson", configAnnouncementsJson);
     announcements = configAnnouncementsJson;
 
     this.store.set("dogelixServerAnnouncements", announcements);
