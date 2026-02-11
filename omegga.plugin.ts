@@ -1,5 +1,4 @@
 import { OmeggaPlugin, OL, PS, PC } from 'omegga';
-import fetch from 'node-fetch';
 
 
 // plugin config and storage
